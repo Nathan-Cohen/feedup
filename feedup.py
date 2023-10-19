@@ -1,3 +1,4 @@
+import os
 import random
 
 from actions import Actions
@@ -20,36 +21,23 @@ class Feedup:
         self.evolution = False
         self.maladies = 0
         self.soins_medicaux = 0
+        self.messages = []
+
+    def update_status(self):
+        """
+        Update the character's status by checking health, triggering events, and evaluating evolution.
+        """
+        self.check_health()
+        self.check_and_trigger_event()
+        self.evolve()
 
     def check_and_trigger_event(self):
         """
         Check for life events and trigger them.
         """
         if random.random() < 0.2:
-            event = self.generate_event()
+            event = random.choice(["promotion", "accident", "lottery"])
             self.life_event(event)
-
-    def life_event(self, event):
-        """
-        Handle a life event and adjust character attributes.
-
-        Args:
-            event (str): The life event type (e.g., "promotion", "accident").
-        """
-        if event == "promotion":
-            print("Congratulations! You got a promotion. Your money increases.")
-            self.money += 200
-            self.happiness += min(self.happiness + random.randint(20, 30), 100)
-        elif event == "accident":
-            print("Oh no! You had an accident. Your health decreases.")
-            self.health -= random.randint(10, 20)
-            self.happiness -= random.randint(10, 30)
-        elif event == "lottery":
-            print("You won the lottery! You're rich!")
-            self.money += 500
-            self.happiness += min(self.happiness + random.randint(20, 30), 100)
-
-        self.check_health()
 
     def check_health(self):
         """
@@ -58,7 +46,7 @@ class Feedup:
         if random.random() < 0.05:
             self.maladies += 1
             self.health = max(self.health - random.randint(5, 15), 0)
-            print("Your character has contracted a disease!")
+            self.messages.append("Your character has contracted a disease!")
 
     def evolve(self):
         """
@@ -69,15 +57,28 @@ class Feedup:
         else:
             self.evolution = False
 
-    def generate_event(self):
+    def life_event(self, event):
         """
-        Generate a random life event.
+        Handle a life event and adjust character attributes.
 
-        Returns:
-            str: The generated life event (e.g., "promotion", "accident").
+        Args:
+            event (str): The life event type (e.g., "promotion", "accident").
         """
-        event = random.choice(["promotion", "accident", "lottery"])
-        return event
+        if event == "promotion":
+            self.messages.append("Congratulations! You got a promotion. Your money increases.")
+            self.money += 200
+            self.happiness = min(self.happiness + random.randint(20, 30), 100)
+        elif event == "accident":
+            self.messages.append("Oh no! You had an accident. Your health decreases.")
+            self.health -= random.randint(10, 20)
+            self.happiness -= random.randint(10, 30)
+        elif event == "lottery":
+            self.messages.append("You won the lottery! You're rich!")
+            self.money += 500
+            self.happiness = min(self.happiness + random.randint(20, 30), 100)
+
+        self.check_health()
+
 
 class Main:
     """
