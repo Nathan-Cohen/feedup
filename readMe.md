@@ -91,12 +91,17 @@
 4.  The character will age one year with each action.
 5.  The game continues until a game-over condition is met.
 
-## Example
-
-pythonCopy code
-
-`if __name__ == "__main__":
-    main()` 
+## Coming soon
+- **Enhance customization**: Allow players to further personalize their characters by assigning specific characteristics, life goals, etc.
+- **Rewards and achievements**: Set up a system of rewards and achievements to encourage players to care for their character and achieve certain goals.
+- **Advanced life cycle**: Give the character a longer lifespan and follow his or her trajectory from birth to death. This could involve making decisions at different stages of life, such as education, career, retirement, etc.
+- **Relationship system**: Introduce a relationship system where the character can form friendships, romantic relationships, get married, have children, etc.
+- **Variety of scenarios**: Create several scenarios and possible endings depending on the decisions made by the player. This can add replayability to the game.
+- **Quest system**: Offer the character quests or objectives to complete in order to earn special rewards.
+- **Graphics and animations**: If possible, add visual elements such as graphics and animations to make the game more attractive.
+- **Level system**: Implement a level system where the character can evolve and unlock new abilities as he progresses.
+- **Leaderboards**: Add a leaderboard so players can compare their characters with those of other players.
+- **Narrative story**: Integrate a narrative story that evolves according to the player's choices.
 
 ## Acknowledgments
 
