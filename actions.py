@@ -23,11 +23,9 @@ class Actions:
             self.character.money -= cost
             self.character.health = min(self.character.health + random.randint(5, 20), 100)
             self.character.happiness = min(self.character.happiness + random.randint(5, 10), 100)
-            self.character.check_health()
-            self.character.check_and_trigger_event()
-            self.character.evolve()
+            self.character.update_status
         else:
-            print("You don't have enough money to feed your character.")
+            self.character.messages.append("You don't have enough money to feed your character.")
 
     def play(self):
         """
@@ -38,11 +36,9 @@ class Actions:
             self.character.money -= cost
             self.character.health -= random.randint(1, 10)
             self.character.happiness = min(self.character.happiness + random.randint(10, 30), 100)
-            self.character.check_health()
-            self.character.check_and_trigger_event()
-            self.character.evolve()
+            self.character.update_status
         else:
-            print("You don't have enough money to play with your character.")
+            self.character.messages.append("You don't have enough money to play with your character.")
 
     def work(self):
         """
@@ -52,9 +48,7 @@ class Actions:
         self.character.money += earnings
         self.character.health -= random.randint(5, 20)
         self.character.happiness -= random.randint(3, 10)
-        self.character.check_health()
-        self.character.check_and_trigger_event()
-        self.character.evolve()
+        self.character.update_status
 
     def receive_medical_care(self):
         """
@@ -67,5 +61,5 @@ class Actions:
             self.character.health = min(self.character.health + random.randint(10, 20), 100)
             self.character.maladies = max(self.character.maladies - 1, 0)
         else:
-            print("You don't have enough money for medical care.")
+            self.character.messages.append("You don't have enough money for medical care.")
 
